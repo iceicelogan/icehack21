@@ -100,4 +100,22 @@ fourgrams %>%
     title = "War and Peace Text Analysis",
     subtitle = "4-grams"
   )
+install.packages('wordcloud')
+library(wordcloud)
 
+wordcloud(words = unigrams$word, freq = unigrams$n, min.freq = 1,
+          max.words=200, random.order=FALSE, rot.per=0.35,
+          colors=brewer.pal(8, "Dark2"))
+
+
+wordcloud(words = bigrams$word, freq = bigrams$n, min.freq = 1,
+          max.words=200, random.order=FALSE, rot.per=0.35,
+          colors=brewer.pal(8, "Dark2"))
+
+wordcloud(words = trigrams$word, freq = trigrams$n, min.freq = 1,
+          max.words=200, random.order=FALSE, rot.per=0.35,
+          colors=brewer.pal(8, "Dark2"))
+
+wordcloud(words = fourgrams$word, freq = fourgrams$n, min.freq = 1,
+          max.words=200, random.order=FALSE, rot.per=0.35,
+          colors=brewer.pal(8, "Dark2"))
