@@ -32,6 +32,12 @@ b4 <- as.data.frame(book)
 b5 <- data.frame(txt = b4$book,
            stringsAsFactors = FALSE)
 
+unigrams <- b5 %>% 
+  unnest_tokens(word, txt) %>% 
+  filter(!word %in% stop_words$word) %>%
+  count(word, sort = TRUE) %>%
+  filter(word != "NA")
+
 bigrams <- b5 %>% 
   unnest_tokens(word, txt, token = "ngrams", n = 2) %>% 
   separate(word, c("word1", "word2"), sep = " ") %>% 
@@ -62,4 +68,36 @@ fourgrams <- b5 %>%
   unite(word,word1, word2, word3, word4, sep = " ") %>% 
   count(word, sort = TRUE) %>%
   filter(word != "NA NA NA NA")
+
+install.packages('gt')
+library(gt)
+
+
+unigrams %>%
+  gt() %>%
+  tab_header(
+    title = "War and Peace Text Analysis",
+    subtitle = "1-grams"
+  )
+
+bigrams %>%
+  gt() %>%
+  tab_header(
+    title = "War and Peace Text Analysis",
+    subtitle = "2-grams"
+  )
+
+trigrams %>%
+  gt() %>%
+  tab_header(
+    title = "War and Peace Text Analysis",
+    subtitle = "3-grams"
+  )
+
+fourgrams %>%
+  gt() %>%
+  tab_header(
+    title = "War and Peace Text Analysis",
+    subtitle = "4-grams"
+  )
 
