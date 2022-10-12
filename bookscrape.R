@@ -15,6 +15,7 @@ library(tidytext)
 url <- 'https://www.gutenberg.org/files/2600/2600-h/2600-h.htm'
 webpage <- read_html(url)
 
+######## Error HERE please fix################
 book_html <- html_nodes(webpage,'p')
 
 # Grab Chapter 1
