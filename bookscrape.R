@@ -132,7 +132,7 @@ fivegrams %>%
 install.packages('wordcloud')
 library(wordcloud)
 
-wordcloud(words = unigrams$word, freq = unigrams$n, min.freq = 1,
+wordcloud(words = unigrams$word, freq = unigrams$n, min.freq = 100,
           max.words=200, random.order=FALSE, rot.per=0.35,
           colors=brewer.pal(8, "Dark2"))
 
@@ -146,5 +146,9 @@ wordcloud(words = trigrams$word, freq = trigrams$n, min.freq = 1,
           colors=brewer.pal(8, "Dark2"))
 
 wordcloud(words = fourgrams$word, freq = fourgrams$n, min.freq = 1,
+          max.words=200, random.order=FALSE, rot.per=0.35,
+          colors=brewer.pal(8, "Dark2"))
+
+wordcloud(words = fivegrams$word, freq = fivegrams$n, min.freq = 20,
           max.words=200, random.order=FALSE, rot.per=0.35,
           colors=brewer.pal(8, "Dark2"))
