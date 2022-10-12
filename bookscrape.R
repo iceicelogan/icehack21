@@ -76,14 +76,14 @@ fourgrams <- b5 %>%
 fivegrams <- b5 %>% 
   unnest_tokens(word, txt, token = "ngrams", n = 5) %>% 
   separate(word, c("word1", "word2", "word3", "word4", "word5"), sep = " ") %>% 
-  filter(!word1 %in% stop_words$word) %>%
-  filter(!word2 %in% stop_words$word) %>% 
-  filter(!word3 %in% stop_words$word) %>% 
-  filter(!word4 %in% stop_words$word) %>% 
-  filter(!word5 %in% stop_words$word) %>% 
+#  filter(!word1 %in% stop_words$word) %>%
+#  filter(!word2 %in% stop_words$word) %>% 
+#  filter(!word3 %in% stop_words$word) %>% 
+#  filter(!word4 %in% stop_words$word) %>% 
+#  filter(!word5 %in% stop_words$word) %>% 
   unite(word,word1, word2, word3, word4, word5, sep = " ") %>% 
   count(word, sort = TRUE) %>%
-  filter(word != "NA NA NA NA")
+  filter(word != "NA NA NA NA NA")
 
 #install.packages('gt')
 library(gt)
