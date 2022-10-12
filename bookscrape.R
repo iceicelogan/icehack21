@@ -65,10 +65,10 @@ trigrams <- b5 %>%
 fourgrams <- b5 %>% 
   unnest_tokens(word, txt, token = "ngrams", n = 4) %>% 
   separate(word, c("word1", "word2", "word3", "word4"), sep = " ") %>% 
-  filter(!word1 %in% stop_words$word) %>%
-  filter(!word2 %in% stop_words$word) %>% 
-  filter(!word3 %in% stop_words$word) %>% 
-  filter(!word4 %in% stop_words$word) %>% 
+#  filter(!word1 %in% stop_words$word) %>%
+#  filter(!word2 %in% stop_words$word) %>% 
+#  filter(!word3 %in% stop_words$word) %>% 
+#  filter(!word4 %in% stop_words$word) %>% 
   unite(word,word1, word2, word3, word4, sep = " ") %>% 
   count(word, sort = TRUE) %>%
   filter(word != "NA NA NA NA")
@@ -90,6 +90,7 @@ library(gt)
 
 
 unigrams %>%
+  subset(n > 1000) %>%
   gt() %>%
   tab_header(
     title = "War and Peace Text Analysis",
@@ -97,6 +98,7 @@ unigrams %>%
   )
 
 bigrams %>%
+  subset(n > 1000) %>%
   gt() %>%
   tab_header(
     title = "War and Peace Text Analysis",
@@ -104,6 +106,7 @@ bigrams %>%
   )
 
 trigrams %>%
+  subset(n > 1000) %>%
   gt() %>%
   tab_header(
     title = "War and Peace Text Analysis",
@@ -111,6 +114,7 @@ trigrams %>%
   )
 
 fourgrams %>%
+  subset(n > 10) %>%
   gt() %>%
   tab_header(
     title = "War and Peace Text Analysis",
@@ -118,6 +122,7 @@ fourgrams %>%
   )
 
 fivegrams %>%
+  subset(n > 10) %>%
   gt() %>%
   tab_header(
     title = "War and Peace Text Analysis",
