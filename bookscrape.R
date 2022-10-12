@@ -11,12 +11,13 @@ install.packages('corpus')
 library(corpus)
 install.packages('tidytext')
 library(tidytext)
+
+library(rlan)
 # Read the Book as text
 url <- 'https://www.gutenberg.org/files/2600/2600-h/2600-h.htm'
 webpage <- read_html(url)
 
-######## Error HERE please fix################
-book_html <- html_nodes(webpage,'p')
+book_html <- html_elements(webpage,'p')
 
 # Grab Chapter 1
 book <- html_text(book_html)
@@ -25,7 +26,9 @@ book <- html_text(book_html)
 book_new <- gsub('\r\n      ', ' ', book)
 book_newer <- gsub('\r\n    ', ' ', book_new)
 book_newest <- gsub("[\r\n]", "", book_newer)
-b2 <- as.String(book_newest)
+
+b2 <- toString(book_newest)
+
 #check it
 b3 <- gsub('[[:punct:] ]+',' ', b2)
 b4 <- as.data.frame(book)
